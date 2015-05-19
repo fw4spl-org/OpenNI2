@@ -1,8 +1,11 @@
 include ../../../ThirdParty/PSCommon/BuildSystem/CommonDefs.mak
 
+INC_DIRS = $(INSTALL_INCLUDE_DIR)
+LIB_DIRS = $(INSTALL_LIB_DIR)
+
 BIN_DIR = ../../../Bin
 
-INC_DIRS = \
+INC_DIRS += \
 	../../../Include \
 	../../../ThirdParty/PSCommon/XnLib/Include \
 	. \
@@ -12,9 +15,9 @@ INC_DIRS = \
 SRC_FILES = \
 	*.cpp \
 	DriverImpl/*.cpp \
-	LinkProtoLib/*.cpp
+	LinkProtoLib/*.cpp \
 
-LIB_DIRS  = ../../../ThirdParty/PSCommon/XnLib/Bin/$(PLATFORM)-$(CFG)
+LIB_DIRS += ../../../ThirdParty/PSCommon/XnLib/Bin/$(PLATFORM)-$(CFG)
 LIB_DIRS += $(BIN_DIR)/$(PLATFORM)-$(CFG)
 USED_LIBS = XnLib dl pthread
 
@@ -27,7 +30,7 @@ endif
 ifneq ("$(OSTYPE)","Darwin")
 	USED_LIBS += rt usb-1.0 udev
 else
-	USED_LIBS += usb-1.0.0
+	USED_LIBS += usb-1.0
 endif
 
 CFLAGS += -Wall

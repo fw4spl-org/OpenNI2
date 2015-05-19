@@ -1,6 +1,6 @@
 #############################################################################
 # OpenNI makefile.
-# 
+#
 # default configuration is Release. for a debug version use:
 # 	make CFG=Debug
 #
@@ -42,13 +42,13 @@ ALL_DRIVERS = \
 # list all wrappers
 ALL_WRAPPERS = \
 	Wrappers/java/OpenNI.jni \
-	Wrappers/java/OpenNI.java 
+	Wrappers/java/OpenNI.java
 
 # list all tools
 ALL_TOOLS = \
 	Source/Drivers/PS1080/PS1080Console \
 	Source/Drivers/PSLink/PSLinkConsole
-	
+
 # list all core projects
 ALL_CORE_PROJS = \
 	$(XNLIB)  \
@@ -58,17 +58,23 @@ ALL_CORE_PROJS = \
 	$(ALL_WRAPPERS) \
 	$(ALL_TOOLS)
 
+# list minimum core projects
+MIN_CORE_PROJS = \
+	$(XNLIB)  \
+	$(OPENNI) \
+	$(ALL_DRIVERS) \
+
 # list all samples
 CORE_SAMPLES = \
 	Samples/SimpleRead \
 	Samples/EventBasedRead \
 	Samples/MultipleStreamRead \
 	Samples/MWClosestPoint \
-	Samples/MWClosestPointApp 
+	Samples/MWClosestPointApp
 
 # list all java samples
 JAVA_SAMPLES = \
-	Samples/SimpleViewer.java	
+	Samples/SimpleViewer.java
 
 ifeq "$(GLUT_SUPPORTED)" "1"
 	ALL_TOOLS += \
@@ -80,7 +86,7 @@ ifeq "$(GLUT_SUPPORTED)" "1"
 		Samples/ClosestPointViewer
 else
 	ifeq "$(GLES_SUPPORTED)" "1"
-		CORE_SAMPLES += 
+		CORE_SAMPLES +=
 	endif
 endif
 
@@ -100,10 +106,10 @@ ALL_PROJS_CLEAN = $(foreach proj,$(ALL_PROJS),$(proj)-clean)
 
 # define a function which creates a target for each proj
 define CREATE_PROJ_TARGET
-$1: 
+$1:
 	$$(MAKE) -C $1
 
-$1-clean: 
+$1-clean:
 	$$(MAKE) -C $1 clean
 endef
 
@@ -117,6 +123,8 @@ all: $(ALL_PROJS)
 core: $(ALL_CORE_PROJS)
 
 samples: $(ALL_SAMPLES)
+
+minimum: $(MIN_CORE_PROJS)
 
 # create projects targets
 $(foreach proj,$(ALL_PROJS),$(eval $(call CREATE_PROJ_TARGET,$(proj))))
@@ -152,7 +160,7 @@ $(FINAL_DIR):
 doc:
 	Source/Documentation/Runme.py
 	rm -f Source/Documentation/html/*.md5
-	
+
 release: | all doc $(FINAL_DIR)
 	Packaging/Harvest.py Packaging/$(PRODUCT_STRING) $(PLATFORM)
 	cd Packaging; tar -cjf Final/$(PRODUCT_STRING).tar.bz2 $(PRODUCT_STRING)

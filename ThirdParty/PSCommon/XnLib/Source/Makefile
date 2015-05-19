@@ -1,8 +1,11 @@
 include ../../BuildSystem/CommonDefs.mak
 
+INC_DIRS = $(INSTALL_INCLUDE_DIR)
+LIB_DIRS = $(INSTALL_LIB_DIR)
+
 BIN_DIR = ../Bin
 
-INC_DIRS = \
+INC_DIRS += \
 	../Include
 
 SRC_FILES = \
@@ -18,7 +21,7 @@ endif
 SLIB_NAME = XnLib
 USED_LIBS = usb-1.0 dl pthread udev
 ifneq ("$(OSTYPE)","Darwin")
-	USED_LIBS += rt 
+	USED_LIBS += rt
 endif
 CFLAGS += -Wall
 

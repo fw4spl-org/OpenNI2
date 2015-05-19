@@ -1,8 +1,11 @@
 include ../../../ThirdParty/PSCommon/BuildSystem/CommonDefs.mak
 
+INC_DIRS = $(INSTALL_INCLUDE_DIR)
+LIB_DIRS = $(INSTALL_LIB_DIR)
+
 BIN_DIR = ../../../Bin
 
-INC_DIRS = \
+INC_DIRS += \
 	. \
 	Include \
 	../../../Include \
@@ -20,6 +23,7 @@ SRC_FILES = \
 	../../../ThirdParty/LibJPEG/*.c
 
 
+
 ifeq ("$(OSTYPE)","Darwin")
 	INC_DIRS += /opt/local/include
 	LIB_DIRS += /opt/local/lib
@@ -34,7 +38,7 @@ USED_LIBS = XnLib dl pthread DepthUtils
 ifneq ("$(OSTYPE)","Darwin")
         USED_LIBS += rt usb-1.0 udev
 else
-	USED_LIBS += usb-1.0.0
+	USED_LIBS += usb-1.0
 endif
 
 CFLAGS += -Wall
