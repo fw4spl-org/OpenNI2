@@ -209,7 +209,7 @@
     <ResourceCompile Include="..\..\Resources\OpenNI.rc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{9F6652AF-35F2-452E-A2D3-08D05F5C075E}</ProjectGuid>
+    <ProjectGuid>{73D76231-275A-49E6-9D9A-62CFADD15018}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>PS1080</RootNamespace>
     <ProjectName>ORBBEC</ProjectName>
